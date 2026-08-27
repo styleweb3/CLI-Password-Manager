@@ -1,7 +1,7 @@
 package main
 
-import "fmt"
+import "github.com/styleweb3/cli-password-manager/cmd"
 
 func main() {
-    fmt.Println("Password Manager — v0.1")
+    cmd.Execute()
 }
