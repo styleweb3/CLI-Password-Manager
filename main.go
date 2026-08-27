@@ -1,7 +1,7 @@
 package main
 
-import "github.com/styleweb3/cli-password-manager/cmd"
+import "github.com/styleweb3/CLI-pwd-manager/cmd"
 
 func main() {
-    cmd.Execute()
+	cmd.Execute()
 }
