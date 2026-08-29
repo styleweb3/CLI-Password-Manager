@@ -2,9 +2,11 @@ package cmd
 
 import (
 	"fmt"
+	"time"
 
-	"github.com/spf13/cobra"
 	"github.com/styleweb3/CLI-pwd-manager/models"
+	"github.com/styleweb3/CLI-pwd-manager/internal/store"
+	"github.com/spf13/cobra"
 )
 
 var addCmd = &cobra.Command{
@@ -13,6 +15,8 @@ var addCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		entry := models.PasswordEntry{}
+		entry.ServiceName = args[0]
+		entry.CreatedAt = time.Now()
 
 		fmt.Print("Enter LogIn: ")
 		fmt.Scanln(&entry.LogIn)
@@ -20,8 +24,21 @@ var addCmd = &cobra.Command{
 		fmt.Print("Enter password: ")
         fmt.Scanln(&entry.Password)
 
-		fmt.Printf("\nEntry saved for: %s\n", entry.ServiceName)
-		fmt.Printf("• LogIn: %s", entry.LogIn)
+		entries, err := store.Load()
+        if err != nil {
+            fmt.Println("Error loading vault:", err)
+            return
+        }
+
+        entries = append(entries, entry)
+
+        err = store.Save(entries)
+        if err != nil {
+            fmt.Println("Error saving vault:", err)
+            return
+        }
+
+        fmt.Printf("\n• Entry saved for: %s\n", entry.ServiceName)
 	},
 }
 

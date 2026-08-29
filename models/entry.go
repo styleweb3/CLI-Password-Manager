@@ -5,9 +5,9 @@ import (
 )
 
 type PasswordEntry struct {
-	ServiceName string
-	Folder		string
-	LogIn 		string
-	Password	string
-	CreatedAt 	time.Time
+    ServiceName string    `json:"service_name"`
+    Folder      string    `json:"folder"`
+    LogIn       string    `json:"login"`
+    Password    string    `json:"password"`
+    CreatedAt   time.Time `json:"created_at"`
 }
