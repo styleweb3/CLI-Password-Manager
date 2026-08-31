@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/styleweb3/CLI-pwd-manager/models"
-	"github.com/styleweb3/CLI-pwd-manager/internal/store"
 	"github.com/spf13/cobra"
+	"github.com/styleweb3/CLI-pwd-manager/internal/store"
+	"github.com/styleweb3/CLI-pwd-manager/models"
 )
 
 var addCmd = &cobra.Command{
@@ -22,23 +22,23 @@ var addCmd = &cobra.Command{
 		fmt.Scanln(&entry.LogIn)
 
 		fmt.Print("Enter password: ")
-        fmt.Scanln(&entry.Password)
+		fmt.Scanln(&entry.Password)
 
 		entries, err := store.Load()
-        if err != nil {
-            fmt.Println("Error loading vault:", err)
-            return
-        }
+		if err != nil {
+			fmt.Println("Error loading vault:", err)
+			return
+		}
 
-        entries = append(entries, entry)
+		entries = append(entries, entry)
 
-        err = store.Save(entries)
-        if err != nil {
-            fmt.Println("Error saving vault:", err)
-            return
-        }
+		err = store.Save(entries)
+		if err != nil {
+			fmt.Println("Error saving vault:", err)
+			return
+		}
 
-        fmt.Printf("\n• Entry saved for: %s\n", entry.ServiceName)
+		fmt.Printf("\n• Entry saved for: %s\n", entry.ServiceName)
 	},
 }
 

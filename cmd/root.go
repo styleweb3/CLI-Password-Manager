@@ -8,7 +8,7 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "passmanager",
+	Use:   "pwd",
 	Short: "A simple CLI password manager",
 	Long:  "A secure command-line password manager built with Go.",
 }
