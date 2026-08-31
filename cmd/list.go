@@ -26,7 +26,7 @@ var listCMD = &cobra.Command{
 			fmt.Println("-----------------------------")
 			fmt.Printf("• Service:    %s", entry.ServiceName)
 			fmt.Printf("\n• Log-In:      %s", entry.LogIn)
-			fmt.Printf("\n• Created At: %s", entry.CreatedAt.Format("2006-01-02 15:04"))
+			fmt.Printf("\n• Created At: %s\n", entry.CreatedAt.Format("2006-01-02 15:04"))
 		}
 	
 			fmt.Println("-----------------------------")
